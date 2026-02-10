@@ -1,130 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>All The Best Khushi</title>
+<meta charset="UTF-8">
+<title>All The Best Khushi</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Nunito', sans-serif;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+}
 
-        body {
-            height: 100vh;
-            background: linear-gradient(135deg, #fff4da, #eaf9ff);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
+body {
+    height: 100vh;
+    background: linear-gradient(-45deg, #ffecd2, #fcb69f, #c2ffd8, #d4eaff);
+    background-size: 400% 400%;
+    animation: bgMove 12s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 
-        .scene {
-            position: relative;
-            width: 400px;
-            height: 420px;
-            text-align: center;
-        }
+/* Scene */
+.scene {
+    position: relative;
+    width: 420px;
+    height: 500px;
+    text-align: center;
+}
 
-        /* Speech bubble */
-        .bubble {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 16px 24px;
-            border-radius: 18px;
-            font-size: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            animation: popIn 0.8s ease;
-        }
+/* Speech bubble */
+.bubble {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 18px 26px;
+    border-radius: 20px;
+    font-size: 22px;
+    font-weight: 800;
+    color: #444;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    animation: bubblePop 0.8s ease;
+}
 
-        .bubble::after {
-            content: "";
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-width: 12px 12px 0;
-            border-style: solid;
-            border-color: white transparent transparent;
-        }
+.bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 12px 12px 0;
+    border-style: solid;
+    border-color: white transparent transparent;
+}
 
-        /* Duck */
-        .duck {
-            width: 220px;
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: dance 1.2s infinite ease-in-out,
-                       moveSide 2.4s infinite ease-in-out;
-            cursor: pointer;
-        }
+/* Duck */
+.duck {
+    width: 240px;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation:
+        dance 1.2s infinite ease-in-out,
+        moveSide 2.5s infinite ease-in-out;
+    cursor: pointer;
+}
 
-        .duck.fast {
-            animation-duration: 0.6s, 1.2s;
-        }
+.duck.fast {
+    animation-duration: 0.6s, 1.2s;
+}
 
-        /* Sparkles */
-        .sparkle {
-            position: absolute;
-            font-size: 18px;
-            animation: sparkle 1s ease-out forwards;
-            pointer-events: none;
-        }
+/* Sparkles */
+.sparkle {
+    position: absolute;
+    font-size: 20px;
+    animation: sparkle 1s ease-out forwards;
+    pointer-events: none;
+}
 
-        .hint {
-            position: absolute;
-            bottom: -10px;
-            width: 100%;
-            font-size: 14px;
-            color: #777;
-        }
+/* Hint */
+.hint {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    font-size: 14px;
+    color: #444;
+    opacity: 0.8;
+}
 
-        @keyframes dance {
-            0%   { transform: translateX(-50%) translateY(0) rotate(0deg); }
-            25%  { transform: translateX(-50%) translateY(-8px) rotate(-5deg); }
-            50%  { transform: translateX(-50%) translateY(0) rotate(5deg); }
-            75%  { transform: translateX(-50%) translateY(-6px) rotate(-3deg); }
-            100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
-        }
+/* Animations */
+@keyframes dance {
+    0%   { transform: translateX(-50%) translateY(0) rotate(0); }
+    25%  { transform: translateX(-50%) translateY(-10px) rotate(-6deg); }
+    50%  { transform: translateX(-50%) translateY(0) rotate(6deg); }
+    75%  { transform: translateX(-50%) translateY(-8px) rotate(-4deg); }
+    100% { transform: translateX(-50%) translateY(0) rotate(0); }
+}
 
-        @keyframes moveSide {
-            0%,100% { left: 45%; }
-            50%     { left: 55%; }
-        }
+@keyframes moveSide {
+    0%,100% { left: 45%; }
+    50%     { left: 55%; }
+}
 
-        @keyframes sparkle {
-            0% {
-                opacity: 0;
-                transform: scale(0.5) translateY(0);
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: scale(1.4) translateY(-40px);
-            }
-        }
+@keyframes sparkle {
+    0% { opacity: 0; transform: scale(0.5) translateY(0); }
+    50% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1.4) translateY(-50px); }
+}
 
-        @keyframes popIn {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) scale(0.85);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) scale(1);
-            }
-        }
-    </style>
+@keyframes bubblePop {
+    from { opacity: 0; transform: translateX(-50%) scale(0.85); }
+    to   { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+</style>
 </head>
 <body>
 
@@ -134,10 +135,11 @@
     </div>
 
     <img
-        src="463aea54-2374-4ebf-88b4-9f8b1ad17743.png"
+        src="duck.png"
         class="duck"
         id="duck"
-        onclick="toggleMessage()"
+        alt="Dancing Duck"
+        onclick="interact()"
     >
 
     <div class="hint">tap the duck 🐥</div>
@@ -146,43 +148,43 @@
 <audio id="music" src="music.mp3" loop></audio>
 
 <script>
-    const duck = document.getElementById("duck");
-    const bubble = document.getElementById("bubble");
-    const music = document.getElementById("music");
+const duck = document.getElementById("duck");
+const bubble = document.getElementById("bubble");
+const music = document.getElementById("music");
 
-    let toggled = false;
-    let musicStarted = false;
+let toggle = false;
+let musicStarted = false;
 
-    function toggleMessage() {
-        if (!musicStarted) {
-            music.play();
-            musicStarted = true;
-        }
-
-        duck.classList.toggle("fast");
-
-        bubble.innerHTML = toggled
-            ? "ALL THE BEST, KHUSHI 🌼"
-            : "I am with you. 🌱✨";
-
-        toggled = !toggled;
-
-        createSparkles();
+function interact() {
+    if (!musicStarted) {
+        music.play();
+        musicStarted = true;
     }
 
-    function createSparkles() {
-        for (let i = 0; i < 6; i++) {
-            const sparkle = document.createElement("div");
-            sparkle.className = "sparkle";
-            sparkle.innerHTML = "✨";
-            sparkle.style.left = Math.random() * 80 + 10 + "%";
-            sparkle.style.bottom = "120px";
+    duck.classList.toggle("fast");
 
-            document.querySelector(".scene").appendChild(sparkle);
+    bubble.textContent = toggle
+        ? "ALL THE BEST, KHUSHI 🌼"
+        : "I am right here with you 🌱✨";
 
-            setTimeout(() => sparkle.remove(), 1000);
-        }
+    toggle = !toggle;
+
+    spawnSparkles();
+}
+
+function spawnSparkles() {
+    for (let i = 0; i < 8; i++) {
+        const s = document.createElement("div");
+        s.className = "sparkle";
+        s.textContent = Math.random() > 0.5 ? "✨" : "⭐";
+        s.style.left = Math.random() * 80 + 10 + "%";
+        s.style.bottom = "140px";
+
+        document.querySelector(".scene").appendChild(s);
+
+        setTimeout(() => s.remove(), 1000);
     }
+}
 </script>
 
 </body>
