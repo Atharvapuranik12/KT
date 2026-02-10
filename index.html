@@ -2,205 +2,205 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>All The Best Khushi</title>
+<title>Duck for Khushi</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Nunito',sans-serif;
 }
 
-/* ========== THEMES ========== */
-body {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    transition: background 0.6s ease;
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffecd2,#fcb69f,#c2ffd8,#d4f1ff);
+  overflow:hidden;
 }
 
-body.day {
-    background: linear-gradient(135deg, #ffecd2, #fcb69f, #c2ffd8);
+/* SCENE */
+.scene{
+  position:relative;
+  width:420px;
+  height:520px;
+  text-align:center;
 }
 
-body.night {
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+/* BUBBLE */
+.bubble{
+  position:absolute;
+  top:30px;
+  left:50%;
+  transform:translateX(-50%);
+  background:white;
+  padding:18px 26px;
+  border-radius:22px;
+  font-size:22px;
+  font-weight:900;
+  color:#444;
+  box-shadow:0 15px 30px rgba(0,0,0,.2);
 }
 
-/* ========== SCENE ========== */
-.scene {
-    position: relative;
-    width: 420px;
-    height: 520px;
-    text-align: center;
+/* DUCK */
+.duck{
+  position:absolute;
+  bottom:90px;
+  left:50%;
+  transform:translateX(-50%);
+  animation:dance 1s infinite ease-in-out;
+  cursor:pointer;
 }
 
-/* Speech bubble */
-.bubble {
-    position: absolute;
-    top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    padding: 18px 26px;
-    border-radius: 20px;
-    font-size: 22px;
-    font-weight: 900;
-    color: #444;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    transition: background 0.4s, color 0.4s;
+/* HEAD */
+.head{
+  width:120px;
+  height:120px;
+  background:#ffd84d;
+  border-radius:50%;
+  position:relative;
+  margin:auto;
 }
 
-body.night .bubble {
-    background: #1e293b;
-    color: #f8fafc;
+/* EYES */
+.eye{
+  width:14px;
+  height:14px;
+  background:#333;
+  border-radius:50%;
+  position:absolute;
+  top:42px;
+}
+.eye.left{ left:30px; }
+.eye.right{ right:30px; }
+
+/* BEAK */
+.beak{
+  width:50px;
+  height:26px;
+  background:#ff9f1c;
+  border-radius:0 0 18px 18px;
+  position:absolute;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%);
 }
 
-/* Duck */
-.duck {
-    width: 240px;
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    cursor: pointer;
+/* BODY */
+.body{
+  width:150px;
+  height:120px;
+  background:#ffe066;
+  border-radius:60% 60% 50% 50%;
+  margin:-10px auto 0;
 }
 
-/* Beat dance */
-.beat {
-    animation: beatDance 0.8s infinite ease-in-out;
+/* WAVE */
+.wave{
+  animation:wave .6s ease-in-out 3;
 }
 
-/* Waving */
-.wave {
-    animation: waveDuck 0.6s ease-in-out 3;
+/* CONTROLS */
+.controls{
+  position:absolute;
+  bottom:20px;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:16px;
 }
 
-/* Controls */
-.controls {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
+button{
+  border:none;
+  padding:12px 20px;
+  border-radius:22px;
+  font-weight:900;
+  cursor:pointer;
+  background:white;
+  box-shadow:0 10px 20px rgba(0,0,0,.15);
+  transition:.2s;
+}
+button:hover{ transform:scale(1.1); }
+
+/* CONFETTI */
+.confetti{
+  position:absolute;
+  animation:fall 1.4s ease-out forwards;
 }
 
-button {
-    border: none;
-    padding: 10px 16px;
-    border-radius: 20px;
-    font-weight: 800;
-    cursor: pointer;
-    background: #ffffffcc;
-    transition: transform 0.2s ease;
+/* ANIMATIONS */
+@keyframes dance{
+  0%{transform:translateX(-50%) translateY(0) rotate(0)}
+  25%{transform:translateX(-50%) translateY(-10px) rotate(-5deg)}
+  50%{transform:translateX(-50%) translateY(0) rotate(5deg)}
+  75%{transform:translateX(-50%) translateY(-8px) rotate(-4deg)}
+  100%{transform:translateX(-50%) translateY(0) rotate(0)}
 }
 
-button:hover {
-    transform: scale(1.08);
+@keyframes wave{
+  0%{transform:translateX(-50%) rotate(0)}
+  50%{transform:translateX(-50%) rotate(12deg)}
+  100%{transform:translateX(-50%) rotate(0)}
 }
 
-/* Sparkles & confetti */
-.sparkle, .confetti {
-    position: absolute;
-    pointer-events: none;
-    animation: floatUp 1.2s ease-out forwards;
-}
-
-/* Animations */
-@keyframes beatDance {
-    0%   { transform: translateX(-50%) scale(1) rotate(0); }
-    25%  { transform: translateX(-50%) scale(1.05) rotate(-4deg); }
-    50%  { transform: translateX(-50%) scale(1.1) rotate(4deg); }
-    75%  { transform: translateX(-50%) scale(1.05) rotate(-3deg); }
-    100% { transform: translateX(-50%) scale(1) rotate(0); }
-}
-
-@keyframes waveDuck {
-    0%   { transform: translateX(-50%) rotate(0); }
-    25%  { transform: translateX(-50%) rotate(-12deg); }
-    50%  { transform: translateX(-50%) rotate(12deg); }
-    75%  { transform: translateX(-50%) rotate(-8deg); }
-    100% { transform: translateX(-50%) rotate(0); }
-}
-
-@keyframes floatUp {
-    0% { opacity: 1; transform: translateY(0) scale(0.8); }
-    100% { opacity: 0; transform: translateY(-80px) scale(1.4); }
+@keyframes fall{
+  from{opacity:1;transform:translateY(0)}
+  to{opacity:0;transform:translateY(120px)}
 }
 </style>
 </head>
 
-<body class="day">
+<body>
 
 <div class="scene">
-    <div class="bubble" id="bubble">
-        ALL THE BEST, KHUSHI 🌼
-    </div>
+  <div class="bubble" id="bubble">
+    ALL THE BEST, KHUSHI 🌼
+  </div>
 
-    <img src="duck.png" class="duck beat" id="duck" onclick="toggleMessage()">
-
-    <div class="controls">
-        <button onclick="toggleTheme()">🌙 Night</button>
-        <button onclick="confetti()">🎁 Finale</button>
+  <div class="duck" id="duck" onclick="talk()">
+    <div class="head">
+      <div class="eye left"></div>
+      <div class="eye right"></div>
+      <div class="beak"></div>
     </div>
+    <div class="body"></div>
+  </div>
+
+  <div class="controls">
+    <button onclick="celebrate()">🎁 Celebrate</button>
+  </div>
 </div>
 
 <script>
-const duck = document.getElementById("duck");
-const bubble = document.getElementById("bubble");
-let showSupport = false;
+let toggle=false;
+const duck=document.getElementById("duck");
+const bubble=document.getElementById("bubble");
 
-/* Toggle message + wave */
-function toggleMessage() {
-    showSupport = !showSupport;
+function talk(){
+  toggle=!toggle;
+  bubble.textContent = toggle
+    ? "Khushi, I am with you 🧸✨"
+    : "ALL THE BEST, KHUSHI 🌼";
 
-    bubble.textContent = showSupport
-        ? "Khushi, I am with you 🧸✨"
-        : "ALL THE BEST, KHUSHI 🌼";
-
-    duck.classList.add("wave");
-    sparkles();
-
-    setTimeout(() => duck.classList.remove("wave"), 700);
+  duck.classList.add("wave");
+  setTimeout(()=>duck.classList.remove("wave"),700);
 }
 
-/* Night mode */
-function toggleTheme() {
-    document.body.classList.toggle("night");
-    document.body.classList.toggle("day");
-}
-
-/* Sparkles */
-function sparkles() {
-    for (let i = 0; i < 6; i++) {
-        const s = document.createElement("div");
-        s.className = "sparkle";
-        s.textContent = "✨";
-        s.style.left = Math.random() * 80 + 10 + "%";
-        s.style.bottom = "150px";
-        document.querySelector(".scene").appendChild(s);
-        setTimeout(() => s.remove(), 1200);
-    }
-}
-
-/* Confetti finale */
-function confetti() {
-    for (let i = 0; i < 30; i++) {
-        const c = document.createElement("div");
-        c.className = "confetti";
-        c.textContent = ["🎉","🎊","✨","⭐"][Math.floor(Math.random()*4)];
-        c.style.left = Math.random() * 100 + "%";
-        c.style.bottom = "0";
-        c.style.animationDuration = Math.random() * 1 + 1 + "s";
-        document.body.appendChild(c);
-        setTimeout(() => c.remove(), 1500);
-    }
+function celebrate(){
+  for(let i=0;i<30;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.textContent=["🎉","✨","⭐","🎊"][Math.floor(Math.random()*4)];
+    c.style.left=Math.random()*100+"%";
+    c.style.top="0";
+    c.style.fontSize=Math.random()*20+14+"px";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),1400);
+  }
 }
 </script>
 
