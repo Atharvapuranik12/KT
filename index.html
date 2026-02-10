@@ -2,206 +2,180 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Duck for Khushi</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<title>All The Best Khushi</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Nunito',sans-serif;
-}
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #a1ffce, #faffd1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
 
-body{
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#ffecd2,#fcb69f,#c2ffd8,#d4f1ff);
-  overflow:hidden;
-}
+    .page {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
 
-/* SCENE */
-.scene{
-  position:relative;
-  width:420px;
-  height:520px;
-  text-align:center;
-}
+    .hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.95);
+    }
 
-/* BUBBLE */
-.bubble{
-  position:absolute;
-  top:30px;
-  left:50%;
-  transform:translateX(-50%);
-  background:white;
-  padding:18px 26px;
-  border-radius:22px;
-  font-size:22px;
-  font-weight:900;
-  color:#444;
-  box-shadow:0 15px 30px rgba(0,0,0,.2);
-}
+    .card {
+        background: white;
+        padding: 40px 50px;
+        border-radius: 24px;
+        text-align: center;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        width: 380px;
+        max-width: 90%;
+    }
 
-/* DUCK */
-.duck{
-  position:absolute;
-  bottom:90px;
-  left:50%;
-  transform:translateX(-50%);
-  animation:dance 1s infinite ease-in-out;
-  cursor:pointer;
-}
+    h1 {
+        margin-bottom: 25px;
+        color: #333;
+    }
 
-/* HEAD */
-.head{
-  width:120px;
-  height:120px;
-  background:#ffd84d;
-  border-radius:50%;
-  position:relative;
-  margin:auto;
-}
+    p {
+        font-size: 18px;
+        color: #555;
+    }
 
-/* EYES */
-.eye{
-  width:14px;
-  height:14px;
-  background:#333;
-  border-radius:50%;
-  position:absolute;
-  top:42px;
-}
-.eye.left{ left:30px; }
-.eye.right{ right:30px; }
+    button {
+        padding: 12px 30px;
+        border-radius: 30px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
 
-/* BEAK */
-.beak{
-  width:50px;
-  height:26px;
-  background:#ff9f1c;
-  border-radius:0 0 18px 18px;
-  position:absolute;
-  bottom:24px;
-  left:50%;
-  transform:translateX(-50%);
-}
+    .yes {
+        background: #4CAF50;
+        color: white;
+    }
 
-/* BODY */
-.body{
-  width:150px;
-  height:120px;
-  background:#ffe066;
-  border-radius:60% 60% 50% 50%;
-  margin:-10px auto 0;
-}
+    .yes:hover {
+        transform: scale(1.1);
+    }
 
-/* WAVE */
-.wave{
-  animation:wave .6s ease-in-out 3;
-}
+    .no {
+        background: #ff4d4d;
+        color: white;
+        position: absolute;
+    }
 
-/* CONTROLS */
-.controls{
-  position:absolute;
-  bottom:20px;
-  width:100%;
-  display:flex;
-  justify-content:center;
-  gap:16px;
-}
+    .btn-area {
+        position: relative;
+        height: 120px;
+        margin-top: 20px;
+    }
 
-button{
-  border:none;
-  padding:12px 20px;
-  border-radius:22px;
-  font-weight:900;
-  cursor:pointer;
-  background:white;
-  box-shadow:0 10px 20px rgba(0,0,0,.15);
-  transition:.2s;
-}
-button:hover{ transform:scale(1.1); }
+    .next {
+        margin-top: 30px;
+        background: #6a5acd;
+        color: white;
+    }
 
-/* CONFETTI */
-.confetti{
-  position:absolute;
-  animation:fall 1.4s ease-out forwards;
-}
+    /* Cute bounce for main message */
+    .bounce {
+        animation: bounce 1.5s infinite;
+    }
 
-/* ANIMATIONS */
-@keyframes dance{
-  0%{transform:translateX(-50%) translateY(0) rotate(0)}
-  25%{transform:translateX(-50%) translateY(-10px) rotate(-5deg)}
-  50%{transform:translateX(-50%) translateY(0) rotate(5deg)}
-  75%{transform:translateX(-50%) translateY(-8px) rotate(-4deg)}
-  100%{transform:translateX(-50%) translateY(0) rotate(0)}
-}
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
+    }
 
-@keyframes wave{
-  0%{transform:translateX(-50%) rotate(0)}
-  50%{transform:translateX(-50%) rotate(12deg)}
-  100%{transform:translateX(-50%) rotate(0)}
-}
+    /* Confetti */
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: red;
+        animation: fall 3s linear forwards;
+    }
 
-@keyframes fall{
-  from{opacity:1;transform:translateY(0)}
-  to{opacity:0;transform:translateY(120px)}
-}
+    @keyframes fall {
+        to {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
 </style>
 </head>
 
 <body>
 
-<div class="scene">
-  <div class="bubble" id="bubble">
-    ALL THE BEST, KHUSHI 🌼
-  </div>
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+    <div class="card">
+        <h1>You will pass the exam?? 😌</h1>
 
-  <div class="duck" id="duck" onclick="talk()">
-    <div class="head">
-      <div class="eye left"></div>
-      <div class="eye right"></div>
-      <div class="beak"></div>
+        <div class="btn-area">
+            <button class="yes" onclick="goToPage(2)">YES</button>
+            <button class="no" id="noBtn">NO</button>
+        </div>
     </div>
-    <div class="body"></div>
-  </div>
+</div>
 
-  <div class="controls">
-    <button onclick="celebrate()">🎁 Celebrate</button>
-  </div>
+<!-- PAGE 2 -->
+<div class="page hidden" id="page2">
+    <div class="card">
+        <h1>Hey Khushi 💛</h1>
+        <p>I am with you.</p>
+        <button class="next" onclick="goToPage(3)">Next</button>
+    </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page hidden" id="page3">
+    <div class="card bounce">
+        <h1>🌟 ALL THE BEST KHUSHI 🌟</h1>
+        <p>You’ve got this. Go shine ✨</p>
+        <button class="next" onclick="confettiBlast()">Celebrate 🎉</button>
+    </div>
 </div>
 
 <script>
-let toggle=false;
-const duck=document.getElementById("duck");
-const bubble=document.getElementById("bubble");
+    const noBtn = document.getElementById("noBtn");
 
-function talk(){
-  toggle=!toggle;
-  bubble.textContent = toggle
-    ? "Khushi, I am with you 🧸✨"
-    : "ALL THE BEST, KHUSHI 🌼";
+    noBtn.addEventListener("mouseenter", () => {
+        const x = Math.random() * 250;
+        const y = Math.random() * 80;
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    });
 
-  duck.classList.add("wave");
-  setTimeout(()=>duck.classList.remove("wave"),700);
-}
+    function goToPage(page) {
+        document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
+        document.getElementById("page" + page).classList.remove("hidden");
+    }
 
-function celebrate(){
-  for(let i=0;i<30;i++){
-    const c=document.createElement("div");
-    c.className="confetti";
-    c.textContent=["🎉","✨","⭐","🎊"][Math.floor(Math.random()*4)];
-    c.style.left=Math.random()*100+"%";
-    c.style.top="0";
-    c.style.fontSize=Math.random()*20+14+"px";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),1400);
-  }
-}
+    function confettiBlast() {
+        for (let i = 0; i < 80; i++) {
+            const confetti = document.createElement("div");
+            confetti.classList.add("confetti");
+            confetti.style.left = Math.random() * window.innerWidth + "px";
+            confetti.style.background =
+                `hsl(${Math.random() * 360}, 100%, 60%)`;
+            document.body.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 3000);
+        }
+    }
 </script>
 
 </body>
