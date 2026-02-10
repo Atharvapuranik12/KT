@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>All The Best Khushi</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -14,175 +14,192 @@
     font-family: 'Nunito', sans-serif;
 }
 
+/* ========== THEMES ========== */
 body {
     height: 100vh;
-    background: linear-gradient(-45deg, #ffecd2, #fcb69f, #c2ffd8, #d4eaff);
-    background-size: 400% 400%;
-    animation: bgMove 12s ease infinite;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    transition: background 0.6s ease;
 }
 
-/* Scene */
+body.day {
+    background: linear-gradient(135deg, #ffecd2, #fcb69f, #c2ffd8);
+}
+
+body.night {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+/* ========== SCENE ========== */
 .scene {
     position: relative;
     width: 420px;
-    height: 500px;
+    height: 520px;
     text-align: center;
 }
 
 /* Speech bubble */
 .bubble {
     position: absolute;
-    top: 20px;
+    top: 25px;
     left: 50%;
     transform: translateX(-50%);
     background: white;
     padding: 18px 26px;
     border-radius: 20px;
     font-size: 22px;
-    font-weight: 800;
+    font-weight: 900;
     color: #444;
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    animation: bubblePop 0.8s ease;
+    transition: background 0.4s, color 0.4s;
 }
 
-.bubble::after {
-    content: "";
-    position: absolute;
-    bottom: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 12px 12px 0;
-    border-style: solid;
-    border-color: white transparent transparent;
+body.night .bubble {
+    background: #1e293b;
+    color: #f8fafc;
 }
 
 /* Duck */
 .duck {
     width: 240px;
     position: absolute;
-    bottom: 40px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
-    animation:
-        dance 1.2s infinite ease-in-out,
-        moveSide 2.5s infinite ease-in-out;
     cursor: pointer;
 }
 
-.duck.fast {
-    animation-duration: 0.6s, 1.2s;
+/* Beat dance */
+.beat {
+    animation: beatDance 0.8s infinite ease-in-out;
 }
 
-/* Sparkles */
-.sparkle {
-    position: absolute;
-    font-size: 20px;
-    animation: sparkle 1s ease-out forwards;
-    pointer-events: none;
+/* Waving */
+.wave {
+    animation: waveDuck 0.6s ease-in-out 3;
 }
 
-/* Hint */
-.hint {
+/* Controls */
+.controls {
     position: absolute;
-    bottom: 5px;
+    bottom: 10px;
     width: 100%;
-    font-size: 14px;
-    color: #444;
-    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+button {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    background: #ffffffcc;
+    transition: transform 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+/* Sparkles & confetti */
+.sparkle, .confetti {
+    position: absolute;
+    pointer-events: none;
+    animation: floatUp 1.2s ease-out forwards;
 }
 
 /* Animations */
-@keyframes dance {
-    0%   { transform: translateX(-50%) translateY(0) rotate(0); }
-    25%  { transform: translateX(-50%) translateY(-10px) rotate(-6deg); }
-    50%  { transform: translateX(-50%) translateY(0) rotate(6deg); }
-    75%  { transform: translateX(-50%) translateY(-8px) rotate(-4deg); }
-    100% { transform: translateX(-50%) translateY(0) rotate(0); }
+@keyframes beatDance {
+    0%   { transform: translateX(-50%) scale(1) rotate(0); }
+    25%  { transform: translateX(-50%) scale(1.05) rotate(-4deg); }
+    50%  { transform: translateX(-50%) scale(1.1) rotate(4deg); }
+    75%  { transform: translateX(-50%) scale(1.05) rotate(-3deg); }
+    100% { transform: translateX(-50%) scale(1) rotate(0); }
 }
 
-@keyframes moveSide {
-    0%,100% { left: 45%; }
-    50%     { left: 55%; }
+@keyframes waveDuck {
+    0%   { transform: translateX(-50%) rotate(0); }
+    25%  { transform: translateX(-50%) rotate(-12deg); }
+    50%  { transform: translateX(-50%) rotate(12deg); }
+    75%  { transform: translateX(-50%) rotate(-8deg); }
+    100% { transform: translateX(-50%) rotate(0); }
 }
 
-@keyframes sparkle {
-    0% { opacity: 0; transform: scale(0.5) translateY(0); }
-    50% { opacity: 1; }
-    100% { opacity: 0; transform: scale(1.4) translateY(-50px); }
-}
-
-@keyframes bubblePop {
-    from { opacity: 0; transform: translateX(-50%) scale(0.85); }
-    to   { opacity: 1; transform: translateX(-50%) scale(1); }
-}
-
-@keyframes bgMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) scale(0.8); }
+    100% { opacity: 0; transform: translateY(-80px) scale(1.4); }
 }
 </style>
 </head>
-<body>
+
+<body class="day">
 
 <div class="scene">
     <div class="bubble" id="bubble">
         ALL THE BEST, KHUSHI 🌼
     </div>
 
-    <img
-        src="duck.png"
-        class="duck"
-        id="duck"
-        alt="Dancing Duck"
-        onclick="interact()"
-    >
+    <img src="duck.png" class="duck beat" id="duck" onclick="toggleMessage()">
 
-    <div class="hint">tap the duck 🐥</div>
+    <div class="controls">
+        <button onclick="toggleTheme()">🌙 Night</button>
+        <button onclick="confetti()">🎁 Finale</button>
+    </div>
 </div>
-
-<audio id="music" src="music.mp3" loop></audio>
 
 <script>
 const duck = document.getElementById("duck");
 const bubble = document.getElementById("bubble");
-const music = document.getElementById("music");
+let showSupport = false;
 
-let toggle = false;
-let musicStarted = false;
+/* Toggle message + wave */
+function toggleMessage() {
+    showSupport = !showSupport;
 
-function interact() {
-    if (!musicStarted) {
-        music.play();
-        musicStarted = true;
-    }
+    bubble.textContent = showSupport
+        ? "Khushi, I am with you 🧸✨"
+        : "ALL THE BEST, KHUSHI 🌼";
 
-    duck.classList.toggle("fast");
+    duck.classList.add("wave");
+    sparkles();
 
-    bubble.textContent = toggle
-        ? "ALL THE BEST, KHUSHI 🌼"
-        : "I am right here with you 🌱✨";
-
-    toggle = !toggle;
-
-    spawnSparkles();
+    setTimeout(() => duck.classList.remove("wave"), 700);
 }
 
-function spawnSparkles() {
-    for (let i = 0; i < 8; i++) {
+/* Night mode */
+function toggleTheme() {
+    document.body.classList.toggle("night");
+    document.body.classList.toggle("day");
+}
+
+/* Sparkles */
+function sparkles() {
+    for (let i = 0; i < 6; i++) {
         const s = document.createElement("div");
         s.className = "sparkle";
-        s.textContent = Math.random() > 0.5 ? "✨" : "⭐";
+        s.textContent = "✨";
         s.style.left = Math.random() * 80 + 10 + "%";
-        s.style.bottom = "140px";
-
+        s.style.bottom = "150px";
         document.querySelector(".scene").appendChild(s);
+        setTimeout(() => s.remove(), 1200);
+    }
+}
 
-        setTimeout(() => s.remove(), 1000);
+/* Confetti finale */
+function confetti() {
+    for (let i = 0; i < 30; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.textContent = ["🎉","🎊","✨","⭐"][Math.floor(Math.random()*4)];
+        c.style.left = Math.random() * 100 + "%";
+        c.style.bottom = "0";
+        c.style.animationDuration = Math.random() * 1 + 1 + "s";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 1500);
     }
 }
 </script>
