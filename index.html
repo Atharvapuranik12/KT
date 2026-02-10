@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All The Best Khushi</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #fff4da, #eaf9ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .duck-wrapper {
+            position: relative;
+            text-align: center;
+        }
+
+        /* Speech bubble */
+        .bubble {
+            position: absolute;
+            top: -110px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 18px 26px;
+            border-radius: 18px;
+            font-size: 20px;
+            color: #444;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            animation: popIn 0.8s ease;
+        }
+
+        .bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 12px 12px 0;
+            border-style: solid;
+            border-color: white transparent transparent;
+        }
+
+        /* Duck */
+        .duck {
+            width: 230px;
+            animation: dance 1.3s infinite ease-in-out;
+            cursor: pointer;
+        }
+
+        .duck:hover {
+            animation: dance 0.7s infinite ease-in-out;
+        }
+
+        /* Hint text */
+        .hint {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        @keyframes dance {
+            0%   { transform: translateY(0) rotate(0deg); }
+            20%  { transform: translateY(-8px) rotate(-5deg); }
+            40%  { transform: translateY(0) rotate(5deg); }
+            60%  { transform: translateY(-6px) rotate(-3deg); }
+            80%  { transform: translateY(0) rotate(3deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        @keyframes popIn {
+            from {
+                transform: translateX(-50%) scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="duck-wrapper">
+        <div class="bubble" id="bubbleText">
+            ALL THE BEST, KHUSHI 🌼
+        </div>
+
+        <img 
+            src="Duck.png"
+            alt="Dancing Duck"
+            class="duck"
+            onclick="changeMessage()"
+        >
+
+        <div class="hint">
+            tap the duck 🐥
+        </div>
+    </div>
+
+    <script>
+        let toggled = false;
+
+        function changeMessage() {
+            const bubble = document.getElementById("bubbleText");
+            if (!toggled) {
+                bubble.innerHTML = "I am with you. 🌱✨";
+            } else {
+                bubble.innerHTML = "ALL THE BEST, KHUSHI 🌼";
+            }
+            toggled = !toggled;
+        }
+    </script>
+
+</body>
+</html>
