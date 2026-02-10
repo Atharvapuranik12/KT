@@ -20,24 +20,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
 
-        .duck-wrapper {
+        .scene {
             position: relative;
+            width: 400px;
+            height: 420px;
             text-align: center;
         }
 
         /* Speech bubble */
         .bubble {
             position: absolute;
-            top: -110px;
+            top: 0;
             left: 50%;
             transform: translateX(-50%);
             background: white;
-            padding: 18px 26px;
+            padding: 16px 24px;
             border-radius: 18px;
             font-size: 20px;
-            color: #444;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             animation: popIn 0.8s ease;
         }
@@ -55,75 +57,133 @@
 
         /* Duck */
         .duck {
-            width: 230px;
-            animation: dance 1.3s infinite ease-in-out;
+            width: 220px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: dance 1.2s infinite ease-in-out,
+                       moveSide 2.4s infinite ease-in-out;
             cursor: pointer;
         }
 
-        .duck:hover {
-            animation: dance 0.7s infinite ease-in-out;
+        .duck.fast {
+            animation-duration: 0.6s, 1.2s;
         }
 
-        /* Hint text */
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            font-size: 18px;
+            animation: sparkle 1s ease-out forwards;
+            pointer-events: none;
+        }
+
         .hint {
-            margin-top: 12px;
+            position: absolute;
+            bottom: -10px;
+            width: 100%;
             font-size: 14px;
             color: #777;
         }
 
         @keyframes dance {
-            0%   { transform: translateY(0) rotate(0deg); }
-            20%  { transform: translateY(-8px) rotate(-5deg); }
-            40%  { transform: translateY(0) rotate(5deg); }
-            60%  { transform: translateY(-6px) rotate(-3deg); }
-            80%  { transform: translateY(0) rotate(3deg); }
-            100% { transform: translateY(0) rotate(0deg); }
+            0%   { transform: translateX(-50%) translateY(0) rotate(0deg); }
+            25%  { transform: translateX(-50%) translateY(-8px) rotate(-5deg); }
+            50%  { transform: translateX(-50%) translateY(0) rotate(5deg); }
+            75%  { transform: translateX(-50%) translateY(-6px) rotate(-3deg); }
+            100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+        }
+
+        @keyframes moveSide {
+            0%,100% { left: 45%; }
+            50%     { left: 55%; }
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) translateY(0);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.4) translateY(-40px);
+            }
         }
 
         @keyframes popIn {
             from {
-                transform: translateX(-50%) scale(0.8);
                 opacity: 0;
+                transform: translateX(-50%) scale(0.85);
             }
             to {
-                transform: translateX(-50%) scale(1);
                 opacity: 1;
+                transform: translateX(-50%) scale(1);
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="duck-wrapper">
-        <div class="bubble" id="bubbleText">
-            ALL THE BEST, KHUSHI 🌼
-        </div>
-
-        <img 
-            src="duck.png"
-            alt="Dancing Duck"
-            class="duck"
-            onclick="changeMessage()"
-        >
-
-        <div class="hint">
-            tap the duck 🐥
-        </div>
+<div class="scene">
+    <div class="bubble" id="bubble">
+        ALL THE BEST, KHUSHI 🌼
     </div>
 
-    <script>
-        let toggled = false;
+    <img
+        src="463aea54-2374-4ebf-88b4-9f8b1ad17743.png"
+        class="duck"
+        id="duck"
+        onclick="toggleMessage()"
+    >
 
-        function changeMessage() {
-            const bubble = document.getElementById("bubbleText");
-            if (!toggled) {
-                bubble.innerHTML = "I am with you. 🌱✨";
-            } else {
-                bubble.innerHTML = "ALL THE BEST, KHUSHI 🌼";
-            }
-            toggled = !toggled;
+    <div class="hint">tap the duck 🐥</div>
+</div>
+
+<audio id="music" src="music.mp3" loop></audio>
+
+<script>
+    const duck = document.getElementById("duck");
+    const bubble = document.getElementById("bubble");
+    const music = document.getElementById("music");
+
+    let toggled = false;
+    let musicStarted = false;
+
+    function toggleMessage() {
+        if (!musicStarted) {
+            music.play();
+            musicStarted = true;
         }
-    </script>
+
+        duck.classList.toggle("fast");
+
+        bubble.innerHTML = toggled
+            ? "ALL THE BEST, KHUSHI 🌼"
+            : "I am with you. 🌱✨";
+
+        toggled = !toggled;
+
+        createSparkles();
+    }
+
+    function createSparkles() {
+        for (let i = 0; i < 6; i++) {
+            const sparkle = document.createElement("div");
+            sparkle.className = "sparkle";
+            sparkle.innerHTML = "✨";
+            sparkle.style.left = Math.random() * 80 + 10 + "%";
+            sparkle.style.bottom = "120px";
+
+            document.querySelector(".scene").appendChild(sparkle);
+
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+    }
+</script>
 
 </body>
 </html>
