@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Duck for Khushi</title>
+<title>Cheer for Khushi</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
 
@@ -19,11 +19,10 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:linear-gradient(135deg,#ffecd2,#fcb69f,#c2ffd8,#d4f1ff);
+  background:linear-gradient(135deg,#fff9c4,#ffccbc,#b2ebf2);
   overflow:hidden;
 }
 
-/* SCENE */
 .scene{
   position:relative;
   width:420px;
@@ -31,7 +30,6 @@ body{
   text-align:center;
 }
 
-/* BUBBLE */
 .bubble{
   position:absolute;
   top:30px;
@@ -42,67 +40,73 @@ body{
   border-radius:22px;
   font-size:22px;
   font-weight:900;
-  color:#444;
-  box-shadow:0 15px 30px rgba(0,0,0,.2);
+  color:#ff5722;
+  box-shadow:0 15px 30px rgba(0,0,0,.1);
+  z-index: 10;
 }
 
-/* DUCK */
-.duck{
+/* THE CHEERING CHARACTER */
+.cheerer{
   position:absolute;
-  bottom:90px;
+  bottom:100px;
   left:50%;
   transform:translateX(-50%);
-  animation:dance 1s infinite ease-in-out;
   cursor:pointer;
+  animation: bounce 0.6s infinite alternate ease-in-out;
 }
 
-/* HEAD */
-.head{
-  width:120px;
-  height:120px;
-  background:#ffd84d;
-  border-radius:50%;
-  position:relative;
-  margin:auto;
+/* STAR BODY */
+.star-body {
+  width: 140px;
+  height: 140px;
+  background: #ffeb3b;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1);
 }
 
-/* EYES */
-.eye{
-  width:14px;
-  height:14px;
-  background:#333;
-  border-radius:50%;
-  position:absolute;
-  top:42px;
-}
-.eye.left{ left:30px; }
-.eye.right{ right:30px; }
-
-/* BEAK */
-.beak{
-  width:50px;
-  height:26px;
-  background:#ff9f1c;
-  border-radius:0 0 18px 18px;
-  position:absolute;
-  bottom:24px;
-  left:50%;
-  transform:translateX(-50%);
+.face {
+  position: absolute;
+  top: 45px;
+  display: flex;
+  gap: 20px;
 }
 
-/* BODY */
-.body{
-  width:150px;
-  height:120px;
-  background:#ffe066;
-  border-radius:60% 60% 50% 50%;
-  margin:-10px auto 0;
+.eye {
+  width: 12px;
+  height: 12px;
+  background: #333;
+  border-radius: 50%;
 }
 
-/* WAVE */
-.wave{
-  animation:wave .6s ease-in-out 3;
+.smile {
+  position: absolute;
+  top: 65px;
+  width: 30px;
+  height: 15px;
+  border-bottom: 4px solid #333;
+  border-radius: 0 0 15px 15px;
 }
+
+/* CHEERING HANDS */
+.hand {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: #ff9800;
+  border-radius: 50%;
+  top: 20px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hand.left { left: -50px; animation: waveLeft 0.4s infinite alternate; }
+.hand.right { right: -50px; animation: waveRight 0.4s infinite alternate; }
 
 /* CONTROLS */
 .controls{
@@ -116,40 +120,42 @@ body{
 
 button{
   border:none;
-  padding:12px 20px;
+  padding:12px 24px;
   border-radius:22px;
   font-weight:900;
   cursor:pointer;
-  background:white;
-  box-shadow:0 10px 20px rgba(0,0,0,.15);
+  background:#ff5722;
+  color: white;
+  box-shadow:0 10px 20px rgba(255,87,34,.3);
   transition:.2s;
 }
-button:hover{ transform:scale(1.1); }
+button:hover{ transform:scale(1.1); background: #f4511e; }
 
-/* CONFETTI */
 .confetti{
   position:absolute;
+  z-index: 5;
   animation:fall 1.4s ease-out forwards;
 }
 
 /* ANIMATIONS */
-@keyframes dance{
-  0%{transform:translateX(-50%) translateY(0) rotate(0)}
-  25%{transform:translateX(-50%) translateY(-10px) rotate(-5deg)}
-  50%{transform:translateX(-50%) translateY(0) rotate(5deg)}
-  75%{transform:translateX(-50%) translateY(-8px) rotate(-4deg)}
-  100%{transform:translateX(-50%) translateY(0) rotate(0)}
+@keyframes bounce {
+  from { transform: translateX(-50%) translateY(0); }
+  to { transform: translateX(-50%) translateY(-20px); }
 }
 
-@keyframes wave{
-  0%{transform:translateX(-50%) rotate(0)}
-  50%{transform:translateX(-50%) rotate(12deg)}
-  100%{transform:translateX(-50%) rotate(0)}
+@keyframes waveLeft {
+  from { transform: rotate(-20deg) translateY(0); }
+  to { transform: rotate(20deg) translateY(-30px); }
+}
+
+@keyframes waveRight {
+  from { transform: rotate(20deg) translateY(0); }
+  to { transform: rotate(-20deg) translateY(-30px); }
 }
 
 @keyframes fall{
-  from{opacity:1;transform:translateY(0)}
-  to{opacity:0;transform:translateY(120px)}
+  from{opacity:1;transform:translateY(0) rotate(0);}
+  to{opacity:0;transform:translateY(200px) rotate(360deg);}
 }
 </style>
 </head>
@@ -158,46 +164,50 @@ button:hover{ transform:scale(1.1); }
 
 <div class="scene">
   <div class="bubble" id="bubble">
-    ALL THE BEST, KHUSHI 🌼
+    YOU CAN DO IT, KHUSHI! 🌟
   </div>
 
-  <div class="duck" id="duck" onclick="talk()">
-    <div class="head">
-      <div class="eye left"></div>
-      <div class="eye right"></div>
-      <div class="beak"></div>
+  <div class="cheerer" id="cheerBot" onclick="talk()">
+    <div class="hand left">✨</div>
+    <div class="star-body">
+      <div class="face">
+        <div class="eye"></div>
+        <div class="eye"></div>
+      </div>
+      <div class="smile"></div>
     </div>
-    <div class="body"></div>
+    <div class="hand right">✨</div>
   </div>
 
   <div class="controls">
-    <button onclick="celebrate()">🎁 Celebrate</button>
+    <button onclick="celebrate()">📣 Cheer Louder!</button>
   </div>
 </div>
 
 <script>
 let toggle=false;
-const duck=document.getElementById("duck");
 const bubble=document.getElementById("bubble");
 
 function talk(){
   toggle=!toggle;
-  bubble.textContent = toggle
-    ? "Khushi, I am with you 🧸✨"
-    : "ALL THE BEST, KHUSHI 🌼";
-
-  duck.classList.add("wave");
-  setTimeout(()=>duck.classList.remove("wave"),700);
+  bubble.textContent = toggle 
+    ? "Khushi is the best! 🎊" 
+    : "YOU CAN DO IT, KHUSHI! 🌟";
+  
+  // Quick scale effect on click
+  const cheerer = document.getElementById("cheerBot");
+  cheerer.style.transform = "translateX(-50%) scale(1.2)";
+  setTimeout(()=> cheerer.style.transform = "translateX(-50%) scale(1)", 200);
 }
 
 function celebrate(){
-  for(let i=0;i<30;i++){
+  for(let i=0;i<40;i++){
     const c=document.createElement("div");
     c.className="confetti";
-    c.textContent=["🎉","✨","⭐","🎊"][Math.floor(Math.random()*4)];
+    c.textContent=["⭐","✨","🌈","🔥","🏆"][Math.floor(Math.random()*5)];
     c.style.left=Math.random()*100+"%";
-    c.style.top="0";
-    c.style.fontSize=Math.random()*20+14+"px";
+    c.style.top=Math.random()*20+10+"%";
+    c.style.fontSize=Math.random()*25+15+"px";
     document.body.appendChild(c);
     setTimeout(()=>c.remove(),1400);
   }
