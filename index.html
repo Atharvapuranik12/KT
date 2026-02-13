@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>A Special Cheer for Khushi</title>
+<title>Blessings for Khushi</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&display=swap" rel="stylesheet">
 <style>
   body {
@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle, #fff5f7, #ffd1dc);
+    background: radial-gradient(circle, #fff9e6, #ffecb3);
     overflow: hidden;
     font-family: 'Nunito', sans-serif;
   }
@@ -23,158 +23,112 @@
     max-width: 500px;
   }
 
-  /* SWEET MESSAGE BUBBLE */
+  /* RADIANT MESSAGE BUBBLE */
   .bubble {
     background: white;
-    padding: 20px 30px;
+    padding: 22px 35px;
     border-radius: 50px;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 900;
-    color: #ff4d6d;
+    color: #d4a017; /* Golden Bronze */
     display: inline-block;
-    box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
-    margin-bottom: 50px;
-    border: 4px solid #ff4d6d;
+    box-shadow: 0 10px 40px rgba(212, 160, 23, 0.3);
+    margin-bottom: 60px;
+    border: 4px solid #ffd700;
     position: relative;
-    animation: float 2s infinite ease-in-out;
+    animation: float 2.5s infinite ease-in-out;
   }
 
-  /* THE AIR-DANCER CARTOON */
+  /* THE RADIANT BLESSING CHARACTER */
   .character {
     position: relative;
-    width: 80px;
-    height: 280px;
-    background: #ff4d6d;
+    width: 85px;
+    height: 290px;
+    background: #ffd700;
     margin: 0 auto;
-    border-radius: 40px 40px 10px 10px;
-    animation: wiggle 0.6s infinite alternate ease-in-out;
+    border-radius: 45px 45px 15px 15px;
+    animation: wiggle 0.7s infinite alternate ease-in-out;
     transform-origin: bottom center;
     cursor: pointer;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
   }
 
-  /* THE FACE */
-  .face {
-    padding-top: 30px;
+  /* GLOW EFFECT */
+  .character::before {
+    content: '';
+    position: absolute;
+    top: -10%; left: -20%; width: 140%; height: 120%;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+    z-index: -1;
+    animation: pulseGlow 2s infinite;
   }
-  .eyes {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-  }
+
+  .face { padding-top: 35px; }
+  .eyes { display: flex; justify-content: center; gap: 18px; }
   .eye {
-    width: 14px;
-    height: 14px;
-    background: white;
-    border-radius: 50%;
+    width: 16px; height: 16px;
+    background: #5d4037; border-radius: 50%;
     position: relative;
   }
-  .eye::after {
-    content: '';
-    width: 7px;
-    height: 7px;
-    background: #333;
-    border-radius: 50%;
-    position: absolute;
-    top: 2px;
-    left: 4px;
-  }
   .smile {
-    width: 35px;
-    height: 18px;
-    border-bottom: 5px solid white;
+    width: 40px; height: 20px;
+    border-bottom: 5px solid #5d4037;
     border-radius: 50%;
-    margin: 10px auto;
+    margin: 12px auto;
   }
 
-  /* FLOPPY ARMS AND LEGS */
-  .limb {
-    position: absolute;
-    background: #ff4d6d;
-    border-radius: 20px;
-  }
-  .arm {
-    width: 130px;
-    height: 30px;
-    top: 80px;
-  }
-  .arm.left {
-    left: -110px;
-    transform-origin: right center;
-    animation: flopLeft 0.4s infinite alternate;
-  }
-  .arm.right {
-    right: -110px;
-    transform-origin: left center;
-    animation: flopRight 0.5s infinite alternate;
-  }
-  .leg {
-    width: 35px;
-    height: 70px;
-    bottom: -60px;
-    background: #c9184a;
-  }
-  .leg.left { left: 5px; animation: legKick 0.4s infinite alternate; }
-  .leg.right { right: 40px; animation: legKick 0.4s infinite alternate-reverse; }
+  /* FLOPPY LIMBS */
+  .limb { position: absolute; background: #ffd700; border-radius: 20px; }
+  .arm { width: 140px; height: 35px; top: 90px; }
+  .arm.left { left: -120px; transform-origin: right center; animation: flopLeft 0.5s infinite alternate; }
+  .arm.right { right: -120px; transform-origin: left center; animation: flopRight 0.6s infinite alternate; }
+  
+  .leg { width: 40px; height: 75px; bottom: -65px; background: #fbc02d; }
+  .leg.left { left: 5px; animation: legKick 0.5s infinite alternate; }
+  .leg.right { right: 40px; animation: legKick 0.5s infinite alternate-reverse; }
 
   /* ANIMATIONS */
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
-  @keyframes wiggle {
-    from { transform: rotate(-8deg); }
-    to { transform: rotate(8deg); }
-  }
-  @keyframes flopLeft {
-    from { transform: rotate(40deg); }
-    to { transform: rotate(-60deg); }
-  }
-  @keyframes flopRight {
-    from { transform: rotate(-40deg); }
-    to { transform: rotate(60deg); }
-  }
-  @keyframes legKick {
-    from { transform: translateY(0) rotate(-10deg); }
-    to { transform: translateY(-10px) rotate(10deg); }
-  }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+  @keyframes wiggle { from { transform: rotate(-10deg); } to { transform: rotate(10deg); } }
+  @keyframes flopLeft { from { transform: rotate(45deg); } to { transform: rotate(-55deg); } }
+  @keyframes flopRight { from { transform: rotate(-45deg); } to { transform: rotate(55deg); } }
+  @keyframes legKick { from { transform: translateY(0); } to { transform: translateY(-15px); } }
+  @keyframes pulseGlow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
   /* BUTTONS */
-  .controls {
-    margin-top: 100px;
-  }
+  .controls { margin-top: 110px; }
   button {
-    background: #ff4d6d;
-    color: white;
-    border: none;
-    padding: 15px 40px;
-    font-size: 20px;
-    font-weight: 900;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+    background: linear-gradient(45deg, #ffd700, #ff8f00);
+    color: white; border: none;
+    padding: 18px 45px;
+    font-size: 22px; font-weight: 900;
+    border-radius: 50px; cursor: pointer;
+    box-shadow: 0 10px 25px rgba(255, 143, 0, 0.4);
     transition: 0.3s;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
   }
-  button:hover { transform: scale(1.1); background: #ff758f; }
+  button:hover { transform: scale(1.1) rotate(-2deg); }
 
-  /* OVERLAY EFFECTS */
-  .heart {
+  /* BLESSING PARTICLES */
+  .blessing {
     position: absolute;
-    font-size: 30px;
-    animation: flyUp 1.5s linear forwards;
+    pointer-events: none;
+    animation: riseAndFade 2s ease-out forwards;
     z-index: 100;
   }
-  @keyframes flyUp {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-500px) rotate(360deg) scale(0); opacity: 0; }
+  @keyframes riseAndFade {
+    0% { transform: translateY(0) scale(0.5); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-600px) rotate(360deg) scale(1.5); opacity: 0; }
   }
 </style>
 </head>
 <body>
 
 <div class="wrapper">
-  <div class="bubble" id="message">ALL THE BEST, KHUSHI! 🌸</div>
+  <div class="bubble" id="message">May all blessings be with you, Khushi! ✨</div>
 
-  <div class="character" id="mainChar" onclick="hug()">
+  <div class="character" id="blessBot" onclick="sendLuck()">
     <div class="face">
       <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
       <div class="smile"></div>
@@ -186,47 +140,6 @@
   </div>
 
   <div class="controls">
-    <button onclick="superCheer()">✨ Send Blessings & Luck ✨</button>
+    <button onclick="rainBlessings()">🙌 Send Blessings & Luck 🙌</button>
   </div>
 </div>
-
-<script>
-  const sweetMsgs = [
-    "ALL THE BEST, KHUSHI! 🌸",
-    "You've worked so hard, you've got this! 💪",
-    "Believe in yourself as much as I do! ✨",
-    "Take a deep breath, you're going to shine! 🌟",
-    "You are capable of amazing things, Khushi! ❤️",
-    "Go ace that exam, my superstar! 🏆"
-  ];
-
-  function hug() {
-    const msg = document.getElementById('message');
-    msg.textContent = sweetMsgs[Math.floor(Math.random() * sweetMsgs.length)];
-    msg.style.transform = "scale(1.2)";
-    setTimeout(() => msg.style.transform = "scale(1)", 200);
-    createHearts();
-  }
-
-  function createHearts() {
-    for(let i=0; i<15; i++) {
-      const h = document.createElement('div');
-      h.className = 'heart';
-      h.textContent = ['❤️',✨','🌸'][Math.floor(Math.random()*5)];
-      h.style.left = (Math.random() * 80 + 10) + '%';
-      h.style.top = '60%';
-      document.body.appendChild(h);
-      setTimeout(() => h.remove(), 1500);
-    }
-  }
-
-  function superCheer() {
-    hug();
-    for(let i=0; i<30; i++) {
-      setTimeout(createHearts, i * 50);
-    }
-  }
-</script>
-
-</body>
-</html>
