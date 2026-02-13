@@ -2,216 +2,225 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Cheer for Khushi</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
-
+<title>Tube Man Cheer for Khushi</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap" rel="stylesheet">
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Nunito',sans-serif;
-}
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+  }
 
-body{
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#fff9c4,#ffccbc,#b2ebf2);
-  overflow:hidden;
-}
+  .container {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.scene{
-  position:relative;
-  width:420px;
-  height:520px;
-  text-align:center;
-}
+  /* SPEECH BUBBLE */
+  .bubble {
+    background: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 20px;
+    color: #333;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 10;
+    border: 3px solid #FF4081;
+  }
 
-.bubble{
-  position:absolute;
-  top:30px;
-  left:50%;
-  transform:translateX(-50%);
-  background:white;
-  padding:18px 26px;
-  border-radius:22px;
-  font-size:22px;
-  font-weight:900;
-  color:#ff5722;
-  box-shadow:0 15px 30px rgba(0,0,0,.1);
-  z-index: 10;
-}
+  /* THE TUBE MAN */
+  .tubeman {
+    position: relative;
+    width: 60px;
+    height: 250px;
+    background: #FF4081;
+    border-radius: 30px 30px 0 0;
+    animation: tubeWiggle 0.8s infinite ease-in-out alternate;
+    transform-origin: bottom center;
+  }
 
-/* THE CHEERING CHARACTER */
-.cheerer{
-  position:absolute;
-  bottom:100px;
-  left:50%;
-  transform:translateX(-50%);
-  cursor:pointer;
-  animation: bounce 0.6s infinite alternate ease-in-out;
-}
+  .face {
+    padding-top: 20px;
+    text-align: center;
+  }
 
-/* STAR BODY */
-.star-body {
-  width: 140px;
-  height: 140px;
-  background: #ffeb3b;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1);
-}
+  .eye {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    position: relative;
+  }
+  .eye::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px; left: 3px;
+  }
 
-.face {
-  position: absolute;
-  top: 45px;
-  display: flex;
-  gap: 20px;
-}
+  .mouth {
+    width: 30px;
+    height: 15px;
+    background: #880E4F;
+    border-radius: 0 0 30px 30px;
+    margin: 5px auto;
+  }
 
-.eye {
-  width: 12px;
-  height: 12px;
-  background: #333;
-  border-radius: 50%;
-}
+  /* FLOPPY ARMS */
+  .arm {
+    position: absolute;
+    width: 120px;
+    height: 25px;
+    background: #FF4081;
+    top: 60px;
+    border-radius: 20px;
+  }
 
-.smile {
-  position: absolute;
-  top: 65px;
-  width: 30px;
-  height: 15px;
-  border-bottom: 4px solid #333;
-  border-radius: 0 0 15px 15px;
-}
+  .arm.left {
+    left: -100px;
+    transform-origin: right center;
+    animation: armFlopLeft 0.5s infinite ease-in-out alternate;
+  }
 
-/* CHEERING HANDS */
-.hand {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background: #ff9800;
-  border-radius: 50%;
-  top: 20px;
-  font-size: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .arm.right {
+    right: -100px;
+    transform-origin: left center;
+    animation: armFlopRight 0.6s infinite ease-in-out alternate;
+  }
 
-.hand.left { left: -50px; animation: waveLeft 0.4s infinite alternate; }
-.hand.right { right: -50px; animation: waveRight 0.4s infinite alternate; }
+  /* LEGS */
+  .leg {
+    position: absolute;
+    bottom: -40px;
+    width: 25px;
+    height: 50px;
+    background: #C2185B;
+    border-radius: 0 0 10px 10px;
+  }
+  .leg.left { left: 5px; }
+  .leg.right { right: 5px; }
 
-/* CONTROLS */
-.controls{
-  position:absolute;
-  bottom:20px;
-  width:100%;
-  display:flex;
-  justify-content:center;
-  gap:16px;
-}
+  /* FAN BASE */
+  .base {
+    width: 100px;
+    height: 40px;
+    background: #444;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
 
-button{
-  border:none;
-  padding:12px 24px;
-  border-radius:22px;
-  font-weight:900;
-  cursor:pointer;
-  background:#ff5722;
-  color: white;
-  box-shadow:0 10px 20px rgba(255,87,34,.3);
-  transition:.2s;
-}
-button:hover{ transform:scale(1.1); background: #f4511e; }
+  /* BUTTONS */
+  .btns {
+    margin-top: 50px;
+    display: flex;
+    gap: 15px;
+  }
 
-.confetti{
-  position:absolute;
-  z-index: 5;
-  animation:fall 1.4s ease-out forwards;
-}
+  button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 50px;
+    background: #FF4081;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
+    transition: 0.3s;
+  }
+  button:hover { transform: scale(1.1); background: #E91E63; }
 
-/* ANIMATIONS */
-@keyframes bounce {
-  from { transform: translateX(-50%) translateY(0); }
-  to { transform: translateX(-50%) translateY(-20px); }
-}
+  /* ANIMATIONS */
+  @keyframes tubeWiggle {
+    0% { transform: rotate(-5deg) scaleY(1); }
+    100% { transform: rotate(5deg) scaleY(0.95); }
+  }
 
-@keyframes waveLeft {
-  from { transform: rotate(-20deg) translateY(0); }
-  to { transform: rotate(20deg) translateY(-30px); }
-}
+  @keyframes armFlopLeft {
+    0% { transform: rotate(30deg); }
+    100% { transform: rotate(-60deg); }
+  }
 
-@keyframes waveRight {
-  from { transform: rotate(20deg) translateY(0); }
-  to { transform: rotate(-20deg) translateY(-30px); }
-}
+  @keyframes armFlopRight {
+    0% { transform: rotate(-30deg); }
+    100% { transform: rotate(60deg); }
+  }
 
-@keyframes fall{
-  from{opacity:1;transform:translateY(0) rotate(0);}
-  to{opacity:0;transform:translateY(200px) rotate(360deg);}
-}
+  .confetti {
+    position: absolute;
+    top: -50px;
+    animation: fall 1.5s linear forwards;
+  }
+
+  @keyframes fall {
+    to { transform: translateY(700px) rotate(360deg); opacity: 0; }
+  }
 </style>
 </head>
-
 <body>
 
-<div class="scene">
-  <div class="bubble" id="bubble">
-    YOU CAN DO IT, KHUSHI! 🌟
-  </div>
+<div class="container">
+  <div class="bubble" id="txt">GO KHUSHI GO! 🚀</div>
 
-  <div class="cheerer" id="cheerBot" onclick="talk()">
-    <div class="hand left">✨</div>
-    <div class="star-body">
-      <div class="face">
-        <div class="eye"></div>
-        <div class="eye"></div>
-      </div>
-      <div class="smile"></div>
+  <div class="tubeman" id="man" onclick="changeMsg()">
+    <div class="face">
+      <div class="eye"></div>
+      <div class="eye"></div>
+      <div class="mouth"></div>
     </div>
-    <div class="hand right">✨</div>
+    <div class="arm left"></div>
+    <div class="arm right"></div>
+    <div class="leg left"></div>
+    <div class="leg right"></div>
   </div>
 
-  <div class="controls">
-    <button onclick="celebrate()">📣 Cheer Louder!</button>
+  <div class="base"></div>
+
+  <div class="btns">
+    <button onclick="party()">🎉 SUPER CHEER</button>
   </div>
 </div>
 
 <script>
-let toggle=false;
-const bubble=document.getElementById("bubble");
+  const msgs = [
+    "YOU'RE A STAR, KHUSHI! ⭐",
+    "CRUSH THAT EXAM! 📚",
+    "BRAHMANKAR WOULD BE PROUD! 🧪",
+    "PHARMACY QUEEN! 👑",
+    "KEEP DANCING! 💃"
+  ];
 
-function talk(){
-  toggle=!toggle;
-  bubble.textContent = toggle 
-    ? "Khushi is the best! 🎊" 
-    : "YOU CAN DO IT, KHUSHI! 🌟";
-  
-  // Quick scale effect on click
-  const cheerer = document.getElementById("cheerBot");
-  cheerer.style.transform = "translateX(-50%) scale(1.2)";
-  setTimeout(()=> cheerer.style.transform = "translateX(-50%) scale(1)", 200);
-}
-
-function celebrate(){
-  for(let i=0;i<40;i++){
-    const c=document.createElement("div");
-    c.className="confetti";
-    c.textContent=["⭐","✨","🌈","🔥","🏆"][Math.floor(Math.random()*5)];
-    c.style.left=Math.random()*100+"%";
-    c.style.top=Math.random()*20+10+"%";
-    c.style.fontSize=Math.random()*25+15+"px";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),1400);
+  function changeMsg() {
+    const randomMsg = msgs[Math.floor(Math.random() * msgs.length)];
+    document.getElementById('txt').textContent = randomMsg;
   }
-}
+
+  function party() {
+    for(let i=0; i<50; i++) {
+      const conf = document.createElement('div');
+      conf.className = 'confetti';
+      conf.style.left = Math.random() * 100 + 'vw';
+      conf.style.fontSize = Math.random() * 20 + 15 + 'px';
+      conf.textContent = ['🎈','✨','💖','🌸','🔥'][Math.floor(Math.random()*5)];
+      document.body.appendChild(conf);
+      setTimeout(() => conf.remove(), 1500);
+    }
+  }
 </script>
 
 </body>
